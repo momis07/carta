@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Una carta para ti 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --rosa:#e88bad;
+    --rosa-fuerte:#d66b95;
+    --rosa-claro:#ffe5ef;
+    --lavanda:#e9ddff;
+    --durazno:#ffe4d6;
+    --blanco:#ffffff;
+    --texto:#795568;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Poppins',sans-serif;
+    color:var(--texto);
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(circle at 15% 20%,#ffd6e8 0%,transparent 35%),
+        radial-gradient(circle at 85% 25%,#e4d6ff 0%,transparent 40%),
+        radial-gradient(circle at 50% 85%,#ffe5d8 0%,transparent 45%),
+        linear-gradient(135deg,#fff0f5,#f7ecff,#fff1e9);
+
+    background-attachment:fixed;
+}
+
+
+.fondo-corazones{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
+.corazon-flotante{
+    position:absolute;
+    bottom:-60px;
+    color:#ed91b4;
+    opacity:.35;
+    animation:subir linear infinite;
+}
+
+@keyframes subir{
+
+    0%{
+        transform:translateY(0) rotate(-15deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.45;
+    }
+
+    85%{
+        opacity:.35;
+    }
+
+    100%{
+        transform:translateY(-115vh) rotate(25deg);
+        opacity:0;
+    }
+
+}
+
+
+.decoracion{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(65px);
+    opacity:.4;
+    z-index:0;
+    pointer-events:none;
+}
+
+.decoracion1{
+    width:300px;
+    height:300px;
+    background:#ffb7d5;
+    top:-100px;
+    left:-100px;
+}
+
+.decoracion2{
+    width:350px;
+    height:350px;
+    background:#d5c0ff;
+    bottom:-120px;
+    right:-100px;
+}
+
+.decoracion3{
+    width:220px;
+    height:220px;
+    background:#ffe1c4;
+    top:45%;
+    right:10%;
+}
+
+.contenedor{
+    width:min(92vw,550px);
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:35px 0;
+}
+
+.marca{
+    font-size:12px;
+    letter-spacing:4px;
+    color:#c4769b;
+    margin-bottom:22px;
+    font-weight:500;
+}
+
+
+.tarjeta{
+    position:relative;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.95);
+    border-radius:30px;
+    min-height:420px;
+    padding:45px 30px;
+    box-shadow:
+        0 20px 60px rgba(189,122,161,.18),
+        0 5px 20px rgba(222,155,190,.12);
+
+    overflow:hidden;
+}
+
+
+.tarjeta::before,
+.tarjeta::after{
+    content:'♡';
+    position:absolute;
+    color:#f0bfd4;
+    font-size:70px;
+    opacity:.45;
+}
+
+.tarjeta::before{
+    left:15px;
+    top:5px;
+}
+
+.tarjeta::after{
+    right:15px;
+    bottom:0;
+}
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(43px,8vw,62px);
+    font-weight:400;
+    color:#c66b94;
+    margin:10px 0 20px;
+    text-shadow:0 3px 12px rgba(224,132,174,.12);
+}
+
+h2{
+    font-family:'Great Vibes',cursive;
+    font-size:42px;
+    font-weight:400;
+    color:#c66b94;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.instruccion{
+    font-size:14px;
+    color:#a77b90;
+    margin:18px 0 25px;
+    font-weight:300;
+}
+
+
+.pantalla{
+    display:none;
+    animation:entrada .8s ease both;
+}
+
+.pantalla.activa{
+    display:block;
+}
+
+@keyframes entrada{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+.huella{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:130px;
+    height:150px;
+    margin:35px auto 20px;
+    border:2px solid #edb9d0;
+    border-radius:50%;
+    background:linear-gradient(
+        145deg,
+        #fff9fc,
+        #ffe5f0
+    );
+
+    font-size:82px;
+    color:#d879a4;
+    cursor:pointer;
+    box-shadow:
+        0 0 0 10px rgba(255,229,240,.6),
+        0 12px 35px rgba(221,137,176,.25);
+    transition:.35s;
+    animation:latido 2.5s infinite;
+}
+
+.huella:hover{
+    transform:scale(1.08);
+
+    box-shadow:
+        0 0 0 14px rgba(255,229,240,.65),
+        0 15px 40px rgba(221,137,176,.4);
+}
+
+@keyframes latido{
+
+    0%,100%{
+        box-shadow:
+        0 0 0 10px rgba(255,229,240,.6),
+        0 12px 35px rgba(221,137,176,.25);
+    }
+
+    50%{
+        box-shadow:
+        0 0 0 16px rgba(255,229,240,.35),
+        0 15px 40px rgba(221,137,176,.35);
+    }
+
+}
+
+.sobre{
+    position:relative;
+    width:260px;
+    height:170px;
+    margin:45px auto 30px;
+    background:linear-gradient(
+        145deg,
+        #ffe0eb,
+        #f5b7cf
+    );
+
+    border-radius:8px;
+    cursor:pointer;
+    box-shadow:
+    0 18px 35px rgba(190,105,147,.25);
+    transition:.4s;
+}
+
+.sobre:hover{
+    transform:translateY(-8px) scale(1.03);
+}
+
+.sobre::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    border-left:130px solid transparent;
+    border-right:130px solid transparent;
+    border-top:95px solid #ffd1e3;
+    z-index:2;
+}
+
+.sobre::after{
+    content:'♥';
+    position:absolute;
+    top:65px;
+    left:calc(50% - 20px);
+    width:40px;
+    height:40px;
+    display:grid;
+    place-items:center;
+    background:#e589af;
+    border-radius:50%;
+    color:white;
+    font-size:22px;
+    box-shadow:0 4px 12px rgba(182,79,130,.3);
+    z-index:3;
+}
+
+.sobre.abriendo{
+    animation:abrirSobre .8s ease forwards;
+}
+
+@keyframes abrirSobre{
+
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+    50%{
+        transform:scale(1.1) rotate(-3deg);
+    }
+
+    100%{
+        transform:scale(.85) translateY(-30px);
+        opacity:0;
+    }
+
+}
+.papel{
+    background:linear-gradient(
+        145deg,
+        #fffefd,
+        #fff7fa
+    );
+
+    border:1px solid #f3dce7;
+    border-radius:16px;
+    box-shadow:
+     0 12px 35px rgba(178,108,145,.12);
+    max-width:410px;
+    margin:20px auto 25px;
+    padding:35px 30px;
+    text-align:left;
+    line-height:1.9;
+    font-family:'Playfair Display',serif;
+    font-size:15px;
+    position:relative;
+}
+
+.papel::before{
+    content:'♥';
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:18px;
+    color:#e9a2bf;
+}
+
+.papel p{
+    margin-bottom:18px;
+}
+
+.firma{
+    text-align:right;
+    font-style:italic;
+    color:#bd6c95;
+    margin-top:25px;
+}
+
+
+.boton{
+    border:0;
+    border-radius:40px;
+    color:white;
+    background:linear-gradient(
+        120deg,
+        #eaa0be,
+        #d67ea7
+    );
+    padding:14px 32px;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:
+        0 8px 25px rgba(212,120,166,.3);
+
+    transition:.3s;
+}
+
+.boton:hover{
+    transform:translateY(-4px);
+    box-shadow:
+        0 12px 30px rgba(212,120,166,.4);
+}
+
+.confeti{
+    position:fixed;
+    z-index:5;
+    pointer-events:none;
+    animation:caida 4s linear forwards;
+}
+
+@keyframes caida{
+
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+
+}
+
+@media(max-width:420px){
+
+    .tarjeta{
+        padding:35px 18px;
+        min-height:400px;
+    }
+
+    .papel{
+        padding:25px 20px;
+        font-size:14px;
+    }
+
+    .sobre{
+        width:220px;
+        height:145px;
+    }
+
+    .sobre::before{
+        border-left-width:110px;
+        border-right-width:110px;
+        border-top-width:80px;
+    }
+
+    .sobre::after{
+        top:52px;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        transition-duration:.01ms!important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<div class="decoracion decoracion1"></div>
+<div class="decoracion decoracion2"></div>
+<div class="decoracion decoracion3"></div>
+<div class="fondo-corazones" id="corazones"></div>
+<main class="contenedor">
+<div class="marca">
+CON MUCHO CARIÑO ♡
+</div>
+
+<section class="tarjeta">
+<div class="pantalla activa" id="paso1">
+<h1>Para mi persona favorita</h1>
+<p class="instruccion">
+</p>
+
+<button
+class="huella"
+onclick="mostrarPaso(2)"
+aria-label="Descubrir sorpresa">
+♡
+</button>
+
+<p class="instruccion">
+Toca el corazón para continuar ♡
+</p>
+
+</div>
+
+<div class="pantalla" id="paso2">
+
+<h1>Happy Birthday</h1>
+
+<p class="instruccion">
+Preparé esta carta especialmente para ti ♥
+</p>
+
+<div
+class="sobre"
+id="sobre"
+role="button"
+tabindex="0"
+onclick="abrirCarta()"
+onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirCarta()}"
+aria-label="Abrir carta">
+</div>
+
+<p class="instruccion">
+Toca el sobre para abrir tu carta
+</p>
+
+</div>
+
+<div class="pantalla" id="paso3">
+
+<h1>Feliz Cumpleaños</h1>
+
+<article class="papel">
+
+<h2>Mi persona favorita:</h2>
+
+<p>
+Amika hoy quiero desearte lo mejor
+en tus 18 vueltas al sol, estoy muy orgullosa 
+de ti y feliz de tenerte a mi lado. No sabes lo 
+agadecida que estoy con la vida por haberme puesto
+una amiga tan increible como tu.
+</p>
+
+<p>
+
+</p>
+
+<p>
+
+</p>
+
+<p>
+
+</p>
+
+<p>
+Con muchísimo cariño,
+para ti.
+</p>
+
+<p class="firma">
+Con cariño,<br>
+Belen ♡
+</p>
+
+</article>
+
+<button
+class="boton"
+onclick="reiniciar()">
+Volver a ver ♥
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+
+<script>
+
+function mostrarPaso(numero){
+
+    document.querySelectorAll('.pantalla')
+    .forEach(pantalla=>{
+        pantalla.classList.remove('activa');
+    });
+
+    document.getElementById('paso'+numero)
+    .classList.add('activa');
+
+}
+
+let abriendo = false;
+function abrirCarta(){
+    if(abriendo) return;
+    abriendo = true;
+    const sobre = document.getElementById('sobre');
+    sobre.classList.add('abriendo');
+    setTimeout(()=>{
+        mostrarPaso(3);
+        lanzarCorazones();
+        sobre.classList.remove('abriendo');
+        abriendo = false;
+    },800);
+
+}
+
+function reiniciar(){
+    mostrarPaso(1);
+
+}
+
+const contenedor = document.getElementById('corazones');
+
+for(let i=0;i<40;i++){
+    const corazon=document.createElement('span');
+    corazon.className='corazon-flotante';
+    corazon.textContent=
+        i%3===0?'♡':'♥';
+    corazon.style.left=
+        Math.random()*100+'%';
+    corazon.style.fontSize=
+        (12+Math.random()*28)+'px';
+    corazon.style.animationDuration=
+        (10+Math.random()*14)+'s';
+    corazon.style.animationDelay=
+        (-Math.random()*20)+'s';
+    contenedor.appendChild(corazon);
+
+}
+
+function lanzarCorazones(){
+
+    const colores=[
+        '#e88bad',
+        '#d6a4e8',
+        '#f4b8c9',
+        '#e9a2bf',
+        '#f5c6d8'
+    ];
+
+    for(let i=0;i<55;i++){
+        const corazon=document.createElement('span');
+        corazon.className='confeti';
+        corazon.textContent=
+            ['♥','♡','✿'][i%3];
+        corazon.style.left=
+            Math.random()*100+'vw';
+        corazon.style.top='-40px';
+        corazon.style.color=
+            colores[Math.floor(Math.random()*colores.length)];
+        corazon.style.fontSize=
+            (12+Math.random()*22)+'px';
+        corazon.style.animationDelay=
+            Math.random()*1.5+'s';
+        document.body.appendChild(corazon);
+        setTimeout(()=>{
+            corazon.remove();
+        },6000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
